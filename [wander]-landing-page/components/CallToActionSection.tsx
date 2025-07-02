@@ -1,7 +1,8 @@
 
 import React from 'react';
-import Button from './Button';
-import { InstagramIcon, TikTokIcon, YouTubeIcon } from './Icons';
+// 【修正】ButtonとIconsコンポーネントを読み込むために、拡張子「.tsx」を追記します。
+import Button from './Button.tsx';
+import { InstagramIcon, TikTokIcon, YouTubeIcon } from './Icons.tsx';
 
 const CallToActionSection: React.FC = () => {
   return (
