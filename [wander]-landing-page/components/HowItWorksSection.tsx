@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { PlayIcon, BookmarkIcon, AirplaneIcon } from './Icons';
+// 【修正】アイコンコンポーネントを読み込むために、拡張子「.tsx」を追記します。
+import { PlayIcon, BookmarkIcon, AirplaneIcon } from './Icons.tsx';
 
 interface StepCardProps {
   icon: React.ReactNode;
