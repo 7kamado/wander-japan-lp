@@ -1,11 +1,13 @@
 
 import React, { useRef } from 'react';
-import HeroSection from './components/HeroSection';
-import AboutSection from './components/AboutSection';
-import FeaturedExperiencesSection from './components/FeaturedExperiencesSection';
-import HowItWorksSection from './components/HowItWorksSection';
-import CallToActionSection from './components/CallToActionSection';
-import Footer from './components/Footer';
+// 【修正】すべてのコンポーネント読み込みに、拡張子「.tsx」を追記します。
+// これにより、ブラウザはどのファイルを読み込むべきか正確に理解できます。
+import HeroSection from './components/HeroSection.tsx';
+import AboutSection from './components/AboutSection.tsx';
+import FeaturedExperiencesSection from './components/FeaturedExperiencesSection.tsx';
+import HowItWorksSection from './components/HowItWorksSection.tsx';
+import CallToActionSection from './components/CallToActionSection.tsx';
+import Footer from './components/Footer.tsx';
 
 const App: React.FC = () => {
   const featuredExperiencesRef = useRef<HTMLDivElement>(null);
