@@ -1,6 +1,8 @@
 
 import React, { useState, useRef } from 'react';
-import { VideoItem } from '../types';
+// 【修正】型定義ファイルを読み込むために、拡張子「.ts」を追記します。
+// '../' は一つ上の階層を指します。
+import { VideoItem } from '../types.ts';
 
 interface VideoThumbnailProps {
   video: VideoItem;
