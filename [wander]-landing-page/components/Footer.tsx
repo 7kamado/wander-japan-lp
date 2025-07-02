@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { WanderLogo, InstagramIcon, TikTokIcon, YouTubeIcon } from './Icons';
+// 【修正】ロゴとアイコンのコンポーネントを読み込むために、拡張子「.tsx」を追記します。
+import { WanderLogo, InstagramIcon, TikTokIcon, YouTubeIcon } from './Icons.tsx';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
