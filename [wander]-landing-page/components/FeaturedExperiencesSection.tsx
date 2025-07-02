@@ -1,9 +1,10 @@
 
 import React, { useState, useMemo } from 'react';
-import { VIDEO_DATA, FILTER_THEMES } from '../constants';
-import { VideoItem, ThemeValue, Themes } from '../types';
-import VideoThumbnail from './VideoThumbnail';
-import Button from './Button';
+// 【修正】このファイルで使われるすべてのローカルファイルに、正しい拡張子（.ts / .tsx）を追記します。
+import { VIDEO_DATA, FILTER_THEMES } from '../constants.ts';
+import { VideoItem, ThemeValue, Themes } from '../types.ts';
+import VideoThumbnail from './VideoThumbnail.tsx';
+import Button from './Button.tsx';
 
 const FeaturedExperiencesSection: React.FC = () => {
   const [activeTheme, setActiveTheme] = useState<ThemeValue>(Themes.ALL);
