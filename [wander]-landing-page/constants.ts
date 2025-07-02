@@ -1,5 +1,6 @@
 
-import { VideoItem, Themes, ThemeValue } from './types';
+// 【修正】型定義ファイルを読み込むために、拡張子「.ts」を追記します。
+import { VideoItem, Themes, ThemeValue } from './types.ts';
 
 export const VIDEO_DATA: VideoItem[] = [
   {
