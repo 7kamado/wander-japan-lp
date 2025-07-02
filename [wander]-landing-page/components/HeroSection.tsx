@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import Button from './Button';
+// 【修正】Buttonコンポーネントを読み込むために、拡張子「.tsx」を追記します。
+import Button from './Button.tsx';
 
 interface HeroSectionProps {
   onWatchVideosClick: () => void;
@@ -17,8 +18,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onWatchVideosClick }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  // --- IMAGE SOURCE ---
-  // A beautiful, relevant image is now directly linked.
+  // --- 画像ソース ---
+  // 美しく関連性の高い画像を直接リンクしています。
   const heroBackgroundImageUrl = "https://images.unsplash.com/photo-1542893394-813c74426544?q=80&w=2670&auto=format&fit=crop";
 
   return (
