@@ -18,10 +18,8 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onWatchVideosClick }) => {
   }, []);
 
   // --- IMAGE SOURCE ---
-  // CRITICAL: Replace "bamboo_forest_sunlight_bridge.jpg" with the actual URL of the bamboo forest image
-  // after hosting it online. This is currently a descriptive placeholder.
-  // Ensure the image is high-resolution and optimized for web performance.
-  const heroBackgroundImageUrl = "bamboo_forest_sunlight_bridge.jpg"; // Descriptive Placeholder
+  // A beautiful, relevant image is now directly linked.
+  const heroBackgroundImageUrl = "https://images.unsplash.com/photo-1542893394-813c74426544?q=80&w=2670&auto=format&fit=crop";
 
   return (
     <section 
