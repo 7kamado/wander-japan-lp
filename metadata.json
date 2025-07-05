@@ -1,6 +1,6 @@
 {
-  "name": "[Wander] Landing Page",
-  "description": "Discover untold stories and hidden wonders of Japan through immersive short videos. Find inspiration for your next adventure off the beaten path.",
+  "name": "Wander LP",
+  "description": "A landing page for Wander , a short-form video platform showcasing hidden gems and authentic experiences in Japan for foreign travelers.",
   "requestFramePermissions": [],
   "prompt": ""
 }
