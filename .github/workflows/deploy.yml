@@ -30,13 +30,6 @@ jobs:
       - name: Check file structure # ファイル構造を確認するデバッグ用ステップ
         run: ls -R
 
-      - name: Install dependencies
-        run: npm install
-        working-directory: ./ 
-
-      - name: Build
-        run: npm run build
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
