@@ -131,8 +131,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const postsToShow = posts.slice(0, 3);
         
         postsToShow.forEach(post => {
-            const postEl = document.createElement('article');
-            postEl.className = 'group bg-white rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden';
+            const postEl = document.createElement('a');
+            postEl.href = `https://wanderjapan.co/blog/${post.id}`;
+            postEl.target = '_blank';
+            postEl.rel = 'noopener noreferrer';
+            postEl.className = 'group bg-white rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden block';
             
             const categoryColors = {
                 'spot': 'bg-blue-100 text-blue-800',
