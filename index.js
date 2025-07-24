@@ -93,6 +93,106 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const MICROCMS_API_ENDPOINT = 'https://wander.microcms.io/api/v1/blog';
+    const MICROCMS_API_KEY = 'zD1rFkHA879FHNDhW4t4XWfSknCrv7BPEn1H';
+    
+    const fetchBlogPosts = async () => {
+        try {
+            const response = await fetch(MICROCMS_API_ENDPOINT, {
+                headers: {
+                    'X-MICROCMS-API-KEY': MICROCMS_API_KEY,
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            return data.contents || [];
+        } catch (error) {
+            console.error('Error fetching blog posts:', error);
+            return null;
+        }
+    };
+    
+    const renderBlogPosts = (posts) => {
+        const blogGrid = document.getElementById('blog-grid');
+        const blogError = document.getElementById('blog-error');
+        
+        if (!blogGrid) return;
+        
+        if (!posts || posts.length === 0) {
+            blogError.classList.remove('hidden');
+            return;
+        }
+        
+        const postsToShow = posts.slice(0, 3);
+        
+        postsToShow.forEach(post => {
+            const postEl = document.createElement('a');
+            postEl.href = `https://service.wanderjapan.co/${post.id}`;
+            postEl.target = '_blank';
+            postEl.rel = 'noopener noreferrer';
+            postEl.className = 'group bg-white rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden block';
+            
+            const categoryColors = {
+                'spot': 'bg-blue-100 text-blue-800',
+                'manner': 'bg-green-100 text-green-800', 
+                'history': 'bg-purple-100 text-purple-800',
+                'experience': 'bg-red-100 text-red-800'
+            };
+            
+            const categoryLabels = {
+                'spot': 'スポット',
+                'manner': 'マナー',
+                'history': '歴史',
+                'experience': '体験'
+            };
+            
+            const mainCategory = post.categories && post.categories.length > 0 ? post.categories[0] : 'experience';
+            const categoryClass = categoryColors[mainCategory] || categoryColors['experience'];
+            const categoryLabel = categoryLabels[mainCategory] || categoryLabels['experience'];
+            
+            postEl.innerHTML = `
+                ${post.mainvisual ? `
+                    <div class="aspect-w-16 aspect-h-9 bg-stone-200">
+                        <img src="${post.mainvisual.url}" alt="${post.title}" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                ` : `
+                    <div class="h-48 bg-gradient-to-br from-stone-200 to-stone-300 flex items-center justify-center">
+                        <svg class="h-16 w-16 text-stone-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                `}
+                <div class="p-6">
+                    <div class="mb-3">
+                        <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full ${categoryClass}">
+                            ${categoryLabel}
+                        </span>
+                    </div>
+                    <h3 class="text-xl font-bold text-stone-900 mb-3 group-hover:text-red-700 transition-colors line-clamp-2">
+                        ${post.title}
+                    </h3>
+                    <div class="text-stone-600 text-sm line-clamp-3">
+                        ${post.body ? post.body.replace(/<[^>]*>/g, '').substring(0, 120) + '...' : ''}
+                    </div>
+                </div>
+            `;
+            
+            blogGrid.appendChild(postEl);
+        });
+    };
+    
+    const initBlogSection = async () => {
+        const posts = await fetchBlogPosts();
+        renderBlogPosts(posts);
+    };
+    
+    initBlogSection();
+
     // --- Update copyright year ---
     const yearSpan = document.getElementById('copyright-year');
     if(yearSpan) {
