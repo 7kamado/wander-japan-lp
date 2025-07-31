@@ -1,6 +1,155 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- API Configuration ---
+    const MICROCMS_API_ENDPOINT = 'https://wander.microcms.io/api/v1/blog';
+    const MICROCMS_API_KEY = 'zD1rFkHA879FHNDhW4t4XWfSknCrv7BPEn1H';
+
+    // --- Client-side Routing ---
+    const showHomePage = () => {
+        document.getElementById('home-content').classList.remove('hidden');
+        document.getElementById('blog-detail-section').classList.add('hidden');
+        document.title = 'Wander | See More. Feel More. Japan Awaits.';
+    };
+
+    const showBlogDetailPage = () => {
+        document.getElementById('home-content').classList.add('hidden');
+        document.getElementById('blog-detail-section').classList.remove('hidden');
+    };
+
+    const parseCurrentPath = () => {
+        const path = window.location.pathname;
+        if (path === '/' || path === '/index.html') {
+            return { type: 'home' };
+        } else if (path.match(/^\/[a-zA-Z0-9_-]+$/)) {
+            // Matches pattern like /xcc4x1trsg_z
+            const postId = path.substring(1); // Remove leading slash
+            return { type: 'blog', postId };
+        }
+        return { type: 'home' }; // Default fallback
+    };
+
+    const fetchBlogPost = async (postId) => {
+        try {
+            const response = await fetch(`${MICROCMS_API_ENDPOINT}/${postId}`, {
+                headers: {
+                    'X-MICROCMS-API-KEY': MICROCMS_API_KEY,
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const post = await response.json();
+            return post;
+        } catch (error) {
+            console.error('Error fetching blog post:', error);
+            return null;
+        }
+    };
+
+    const renderBlogDetail = (post) => {
+        const blogDetailContent = document.getElementById('blog-detail-content');
+        const blogLoading = document.getElementById('blog-loading');
+        const blogErrorDetail = document.getElementById('blog-error-detail');
+        
+        if (!post) {
+            blogLoading.classList.add('hidden');
+            blogErrorDetail.classList.remove('hidden');
+            return;
+        }
+
+        const categoryColors = {
+            'spot': 'bg-blue-100 text-blue-800',
+            'manner': 'bg-green-100 text-green-800', 
+            'history': 'bg-purple-100 text-purple-800',
+            'experience': 'bg-red-100 text-red-800'
+        };
+        
+        const categoryLabels = {
+            'spot': 'スポット',
+            'manner': 'マナー',
+            'history': '歴史',
+            'experience': '体験'
+        };
+        
+        const mainCategory = post.categories && post.categories.length > 0 ? post.categories[0] : 'experience';
+        const categoryClass = categoryColors[mainCategory] || categoryColors['experience'];
+        const categoryLabel = categoryLabels[mainCategory] || categoryLabels['experience'];
+
+        document.title = `${post.title} | Wander Japan`;
+
+        const detailHTML = `
+            <div class="container mx-auto px-6 pb-20">
+                ${post.mainvisual ? `
+                    <div class="aspect-w-16 aspect-h-9 mb-8 rounded-lg overflow-hidden shadow-lg">
+                        <img src="${post.mainvisual.url}" alt="${post.title}" class="w-full h-96 object-cover" />
+                    </div>
+                ` : ''}
+                
+                <div class="max-w-4xl mx-auto">
+                    <div class="mb-6">
+                        <span class="inline-block px-4 py-2 text-sm font-semibold rounded-full ${categoryClass}">
+                            ${categoryLabel}
+                        </span>
+                    </div>
+                    
+                    <h1 class="text-4xl md:text-5xl font-bold text-stone-900 mb-6 leading-tight">
+                        ${post.title}
+                    </h1>
+                    
+                    <div class="flex items-center text-stone-600 text-sm mb-8">
+                        <svg class="h-4 w-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        ${new Date(post.createdAt).toLocaleDateString('ja-JP')}
+                    </div>
+                    
+                    <div class="prose prose-lg max-w-none text-stone-700 leading-relaxed">
+                        ${post.body || '<p>コンテンツが見つかりませんでした。</p>'}
+                    </div>
+                </div>
+            </div>
+        `;
+
+        blogLoading.classList.add('hidden');
+        blogErrorDetail.classList.add('hidden');
+        blogDetailContent.innerHTML = detailHTML;
+    };
+
+    const handleRoute = async (route) => {
+        if (route.type === 'home') {
+            showHomePage();
+        } else if (route.type === 'blog') {
+            showBlogDetailPage();
+            const post = await fetchBlogPost(route.postId);
+            renderBlogDetail(post);
+        }
+    };
+
+    const initializeRouter = () => {
+        const route = parseCurrentPath();
+        handleRoute(route);
+
+        // Handle back to home button
+        const backToHomeBtn = document.getElementById('back-to-home');
+        if (backToHomeBtn) {
+            backToHomeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.history.pushState(null, null, '/');
+                showHomePage();
+            });
+        }
+
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', () => {
+            const route = parseCurrentPath();
+            handleRoute(route);
+        });
+    };
+
     // --- Header Scroll Effect ---
     const header = document.getElementById('header');
     const headerLogo = document.getElementById('header-logo');
@@ -93,9 +242,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const MICROCMS_API_ENDPOINT = 'https://wander.microcms.io/api/v1/blog';
-    const MICROCMS_API_KEY = 'zD1rFkHA879FHNDhW4t4XWfSknCrv7BPEn1H';
-    
     const fetchBlogPosts = async () => {
         try {
             const response = await fetch(MICROCMS_API_ENDPOINT, {
@@ -190,12 +336,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const posts = await fetchBlogPosts();
         renderBlogPosts(posts);
     };
-    
-    initBlogSection();
 
     // --- Update copyright year ---
     const yearSpan = document.getElementById('copyright-year');
     if(yearSpan) {
         yearSpan.textContent = new Date().getFullYear().toString();
+    }
+
+    // --- Initialize Router and App ---
+    initializeRouter();
+    
+    // Initialize blog section only if we're on the home page
+    const route = parseCurrentPath();
+    if (route.type === 'home') {
+        initBlogSection();
     }
 });
