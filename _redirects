@@ -1,0 +1,5 @@
+# Cloudflare Pages redirect rules for SPA routing
+# This file enables client-side routing by redirecting all unmatched routes to index.html
+
+# Redirect all unmatched routes to index.html with 200 status (SPA fallback)
+/* /index.html 200

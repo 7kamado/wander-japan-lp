@@ -55,6 +55,35 @@
     </header>
 
     <main>
+        <!-- Blog Detail Section (hidden by default) -->
+        <section id="blog-detail-section" class="hidden">
+            <div class="bg-white">
+                <div class="container mx-auto px-6 py-8">
+                    <button id="back-to-home" class="inline-flex items-center text-red-700 hover:text-red-800 font-medium mb-6 transition-colors">
+                        <svg class="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        Back to Home
+                    </button>
+                </div>
+            </div>
+            
+            <article id="blog-detail-content" class="bg-white">
+                <div class="container mx-auto px-6 pb-20">
+                    <!-- Blog content will be dynamically inserted here -->
+                    <div id="blog-loading" class="text-center py-20">
+                        <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-red-700"></div>
+                        <p class="mt-4 text-stone-600">Loading...</p>
+                    </div>
+                    <div id="blog-error-detail" class="text-center py-20 hidden">
+                        <p class="text-stone-600">Unable to load blog post. Please try again later.</p>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- Home Page Sections (shown by default) -->
+        <div id="home-content">
         <section 
             class="relative min-h-screen flex items-center justify-center text-center text-white bg-cover bg-center" 
             style="background-image: url('https://picsum.photos/seed/japan/1920/1080')"
@@ -184,6 +213,7 @@
                 </div>
             </div>
         </section>
+        </div> <!-- End home-content -->
     </main>
 
     <footer class="bg-stone-900 text-stone-400 py-12">
