@@ -232,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const stepEl = document.createElement('div');
             stepEl.className = 'text-center';
             stepEl.innerHTML = `
-                <div class="mb-4 inline-flex items-center justify-center h-20 w-20 rounded-full bg-red-700 shadow-lg">
+                <div class="mb-4 inline-flex items-center justify-center h-20 w-20 rounded-full bg-fuchsia-600 shadow-lg">
                     ${step.icon}
                 </div>
                 <h3 class="text-xl font-bold text-stone-900 mb-2">${index + 1}. ${step.title}</h3>
