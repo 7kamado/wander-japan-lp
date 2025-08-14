@@ -9,6 +9,7 @@
     <meta name="description" content="Discover the hidden gems and authentic experiences of Japan through short, inspiring videos. Your next journey starts here." />
     <meta name="keywords" content="Japan travel, hidden gems Japan, authentic Japan, Japan off the beaten path, travel videos, Wander Japan" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -60,9 +61,7 @@
             <div class="bg-white">
                 <div class="container mx-auto px-6 py-8">
                     <button id="back-to-home" class="inline-flex items-center text-fuchsia-600 hover:text-fuchsia-700 font-medium mb-6 transition-colors">
-                        <svg class="h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                        </svg>
+                        <i data-lucide="arrow-left" class="h-5 w-5 mr-2"></i>
                         Back to Home
                     </button>
                 </div>
@@ -120,28 +119,21 @@
                 <div class="grid md:grid-cols-3 gap-8 text-center">
                     <div class="p-6">
                         <div class="flex justify-center items-center mb-4">
-                            <svg class="h-12 w-12 text-fuchsia-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" />
-                            </svg>
+                            <i data-lucide="play" class="h-12 w-12 text-fuchsia-600"></i>
                         </div>
                         <h3 class="text-xl font-bold text-fuchsia-800 mb-2">Short Videos</h3>
                         <p class="text-fuchsia-700">Immerse yourself in authentic moments captured in bite-sized, engaging videos.</p>
                     </div>
                     <div class="p-6">
                         <div class="flex justify-center items-center mb-4">
-                           <svg class="h-12 w-12 text-fuchsia-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.5-10.5h-7a2.25 2.25 0 00-2.25 2.25v10.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-10.5a2.25 2.25 0 00-2.25-2.25z" />
-                           </svg>
+                           <i data-lucide="map-pin" class="h-12 w-12 text-fuchsia-600"></i>
                         </div>
                         <h3 class="text-xl font-bold text-fuchsia-800 mb-2">Unique Locations</h3>
                         <p class="text-fuchsia-700">Journey to places you won't find on a map, from serene temples to bustling local markets.</p>
                     </div>
                     <div class="p-6">
                          <div class="flex justify-center items-center mb-4">
-                            <svg class="h-12 w-12 text-fuchsia-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.355a12.06 12.06 0 01-4.5 0m4.5 0a12.06 12.06 0 01-4.5 0M12 21a9 9 0 110-18 9 9 0 010 18z" />
-                           </svg>
+                           <i data-lucide="sparkles" class="h-12 w-12 text-fuchsia-600"></i>
                         </div>
                         <h3 class="text-xl font-bold text-fuchsia-800 mb-2">Spark Your Trip</h3>
                         <p class="text-fuchsia-700">Move from inspiration to action. Find your next destination and craft a story of your own.</p>
@@ -248,5 +240,11 @@
     </footer>
 
     <script src="./index.js"></script>
+    <script>
+        // Initialize Lucide icons after DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
   </body>
 </html>
