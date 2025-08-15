@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { 
             title: 'GO', 
             description: 'Experience your perfectly planned journey with confidence and excitement.',
-            icon: `<i data-lucide="map-pin" class="h-12 w-12 text-white"></i>`
+            icon: `<i data-lucide="plane" class="h-12 w-12 text-white"></i>`
         }
     ];
 
