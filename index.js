@@ -210,18 +210,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Dynamic "How It Works" Steps ---
     const steps = [
         { 
-            title: 'WATCH', 
-            description: 'Get inspired by watching authentic short videos from all over Japan.',
+            title: 'DISCOVER', 
+            description: 'Watch authentic short videos showcasing Japan\'s hidden gems and secret spots.',
             icon: `<i data-lucide="play-circle" class="h-12 w-12 text-white"></i>`
         },
         { 
-            title: 'SAVE', 
-            description: 'Keep track of your favorite spots and creators on social media.',
-            icon: `<i data-lucide="bookmark" class="h-12 w-12 text-white"></i>`
+            title: 'PLAN', 
+            description: 'Let our AI Concierge craft a personalized itinerary based on the places that inspired you.',
+            icon: `<i data-lucide="bot" class="h-12 w-12 text-white"></i>`
         },
         { 
             title: 'GO', 
-            description: 'Use your inspiration to plan a unique trip and create your own story.',
+            description: 'Experience your perfectly planned journey with confidence and excitement.',
             icon: `<i data-lucide="plane" class="h-12 w-12 text-white"></i>`
         }
     ];
